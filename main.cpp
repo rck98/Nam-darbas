@@ -63,12 +63,12 @@ int main()
 		if (temp.nd.size() % 2 == 0)
 		{
 			temp_med1 = temp.nd.size() / 2;
-			temp_med2 = temp.nd.size() / 2 + 1;
+			temp_med2 = temp.nd.size() / 2 - 1;
 			temp.med = (temp.nd[temp_med1] + temp.nd[temp_med2])*1.0 / 2;
 		}
 		else
 		{
-			temp_med1 = temp.nd.size() / 2 + 1;
+			temp_med1 = temp.nd.size() / 2;
 			temp.med = temp.nd[temp_med1];
 		}
 		lentele.push_back(temp); // i lentele idedam temp
