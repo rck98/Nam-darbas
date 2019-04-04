@@ -31,13 +31,13 @@ int main()
 			temp.nd.push_back(temp_paz);
 			temp_sum += temp_paz;
 		}
+		temp.nd.erase(temp.nd.end() - 1);
 		temp_vid1 = temp_sum * 1.0 / (temp.nd.size() - 1);
 		cout << "Iveskite egzamino rezultata: ";
 		cin >> temp.egz;
 		temp.nd.push_back(temp.egz);
 		temp.vid = temp_vid1 * 0.4 + temp.egz*0.6;
 		sort(temp.nd.begin(), temp.nd.end());
-		temp.nd.erase(temp.nd.end() - 1);
 		if (temp.nd.size() % 2 == 0)
 		{
 			temp_med1 = temp.nd.size() / 2;
@@ -56,14 +56,23 @@ int main()
 	cout << "Jei norite, kad rodytu vidurki spauskite 1, jei mediana spauskite 2 ";
 	cin >> temp_b;
 	if (temp_b == 1)
-	{
-		cout << setw(15) << left << "Vardas " << setw(15) << left << "Pavarde " << setw(20) << right << "Galutinis (Vid.) " << endl;
-		cout.fill('-');
-		cout.width(50);
-		cout << "-" << endl;
-		cout.fill(' ');
-		for (ir duomenys : lentele)
-			cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << duomenys.med << endl;
-	}
-
+    {
+        cout << setw(15) << left << "Vardas " << setw(15) << left << "Pavarde " << setw(20) << right << "Galutinis (Vid.) " << endl;
+        cout.fill('-');
+        cout.width(50);
+        cout << "-" << endl;
+        cout.fill(' ');
+        for (ir duomenys : lentele)
+            cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << duomenys.vid << endl;
+    }
+    else if (temp_b == 2)
+    {
+        cout << setw(15) << left << "Vardas " << setw(15) << left << "Pavarde " << setw(20) << right << "Mediana" << endl;
+        cout.fill('-');
+        cout.width(50);
+        cout << "-" << endl;
+        cout.fill(' ');
+        for (ir duomenys : lentele)
+            cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << duomenys.med << endl;
+    }
 }
