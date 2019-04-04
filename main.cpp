@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <algorithm>
 #include <iomanip>
@@ -14,66 +15,113 @@ struct mokinys {
 
 int main()
 {
+	string failoPav = "kursiokai.txt";
+	char skyriklis = ' ';
 	vector<mokinys>lentele;
 	mokinys temp;
-	int temp_a = 1, temp_b, temp_sum;
+	int temp_a = 1, temp_b, temp_sum=0;
 	double temp_vid1, temp_med1, temp_med2;
-	while (temp_a == 1)
+	int patsArFailas;
+	cout << "Jei norite ivesti duomenis patys, iveskite 1, jeigu is failo 2 ";
+	cin >> patsArFailas;
+	if (patsArFailas == 1) {
+		while (temp_a == 1)
+		{
+			int temp_paz = 1;
+			cout << "Iveskite Varda ir Pavarde ";
+			cin >> temp.var >> temp.pav;
+			temp.nd.clear();
+			temp_sum = 0;
+			int yesno;
+			cout << "Jei norite ivesti duomenis patys, iveskite 1, jeigu is failo 2, kitu atveju iveskite bet ka.. ";
+			cin >> yesno;
+			if (yesno == 1)
+			{
+				cout << "Suveskite pazymius norint sustoti iveskite 0: ";
+				while (temp_paz != 0 && temp_paz > 0 && temp_paz < 11)
+				{
+					cin >> temp_paz;
+					temp.nd.push_back(temp_paz);
+					temp_sum += temp_paz;
+				}
+				temp.nd.erase(temp.nd.end() - 1);
+				temp_vid1 = temp_sum * 1.0 / (temp.nd.size());
+				cout << "Iveskite egzamino rezultata: ";
+				cin >> temp.egz;
+				temp.nd.push_back(temp.egz);
+			}
+			else
+			{
+				cout << "Kiek noresite pazymiu? ";
+				int pazymiuKiekis;
+				cin >> pazymiuKiekis;
+				for (int i = 0; i < pazymiuKiekis; i++)
+				{
+					int pazymys = (rand() % 10) + 1;
+					temp.nd.push_back(pazymys);
+					temp_sum += pazymys;
+				}
+				temp.egz = (rand() % 10) + 1;
+				temp.nd.push_back(temp.egz);
+				temp_vid1 = temp_sum * 1.0 / (temp.nd.size() - 1);
+			}
+			temp.vid = temp_vid1 * 0.4 + temp.egz*0.6;
+			sort(temp.nd.begin(), temp.nd.end());
+			if (temp.nd.size() % 2 == 0)
+			{
+				temp_med1 = temp.nd.size() / 2;
+				temp_med2 = temp.nd.size() / 2 + 1;
+				temp.med = (temp.nd[temp_med1] + temp.nd[temp_med2])*1.0 / 2;
+			}
+			else
+			{
+				temp_med1 = temp.nd.size() / 2 + 1;
+				temp.med = temp.nd[temp_med1];
+			}
+			lentele.push_back(temp); // i lentele idedam temp
+			cout << "Jei norite testi spauskite 1 ";
+			cin >> temp_a;
+		}
+	}
+	else if(patsArFailas == 2)
 	{
-		int temp_paz = 1;
-		cout << "Iveskite Varda ir Pavarde ";
-		cin >> temp.var >> temp.pav;
-		temp.nd.clear();
-		temp_sum = 0;
-		int yesno;
-		cout << "Jei norite ivesti duomenis patys, iveskite 1, kitu atveju iveskite bet ka.. ";
-		cin >> yesno;
-		if (yesno == 1)
+		ifstream failas;
+		failas.open(failoPav);
+		string eilute;
+		vector<string> dalys;
+		if (failas.is_open())
 		{
-			cout << "Suveskite pazymius norint sustoti iveskite 0: ";
-			while (temp_paz != 0 && temp_paz > 0 && temp_paz < 11)
+			while (getline(failas, eilute, skyriklis))
 			{
-				cin >> temp_paz;
-				temp.nd.push_back(temp_paz);
-				temp_sum += temp_paz;
+				dalys.push_back(eilute);
 			}
-			temp.nd.erase(temp.nd.end() - 1);
+			failas.close();
+
+			temp.var = dalys.at(0);
+			temp.pav = dalys.at(1);
+			temp.nd.push_back(atoi(dalys.at(2).c_str()));
+			temp.nd.push_back(atoi(dalys.at(3).c_str()));
+			temp.nd.push_back(atoi(dalys.at(4).c_str()));
+			temp.nd.push_back(atoi(dalys.at(5).c_str()));
+			temp.nd.push_back(atoi(dalys.at(6).c_str()));
+			temp.egz = atoi(dalys.at(7).c_str());
+			for (int i : temp.nd)
+				temp_sum += i;
+				cout<<temp_sum<<endl;
 			temp_vid1 = temp_sum * 1.0 / (temp.nd.size());
-			cout << "Iveskite egzamino rezultata: ";
-			cin >> temp.egz;
+			temp.vid = temp_vid1 * 0.4 + temp.egz*0.6;
 			temp.nd.push_back(temp.egz);
-		}
-		else
-		{
-			cout << "Kiek noresite pazymiu? ";
-			int pazymiuKiekis;
-			cin >> pazymiuKiekis;
-			for (int i = 0; i < pazymiuKiekis; i++)
+			sort(temp.nd.begin(), temp.nd.end());
+			if (temp.nd.size() % 2 == 0)
 			{
-				int pazymys = (rand() % 10) + 1;
-				temp.nd.push_back(pazymys);
-				temp_sum += pazymys;
+				temp_med1 = temp.nd.size() / 2;
+				temp_med2 = temp.nd.size() / 2 -1;
+				temp.med = (temp.nd[temp_med1] + temp.nd[temp_med2])*1.0 / 2;
 			}
-			temp.egz = (rand() % 10) + 1;
-			temp.nd.push_back(temp.egz);
-			temp_vid1 = temp_sum * 1.0 / (temp.nd.size() - 1);
+
+			lentele.push_back(temp); // i lentele idedam temp
 		}
-		temp.vid = temp_vid1 * 0.4 + temp.egz*0.6;
-		sort(temp.nd.begin(), temp.nd.end());
-		if (temp.nd.size() % 2 == 0)
-		{
-			temp_med1 = temp.nd.size() / 2;
-			temp_med2 = temp.nd.size() / 2 - 1;
-			temp.med = (temp.nd[temp_med1] + temp.nd[temp_med2])*1.0 / 2;
-		}
-		else
-		{
-			temp_med1 = temp.nd.size() / 2;
-			temp.med = temp.nd[temp_med1];
-		}
-		lentele.push_back(temp); // i lentele idedam temp
-		cout << "Jei norite testi spauskite 1 ";
-		cin >> temp_a;
+
 	}
 	cout << "Jei norite, kad rodytu vidurki spauskite 1, jei mediana spauskite 2 ";
 	cin >> temp_b;
