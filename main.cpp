@@ -7,16 +7,22 @@
 #include <string.h>
 using namespace std;
 
-struct mokinys {
+struct mokinys
+{
 	string var, pav;
 	vector<int>nd;
 	double egz, vid, med;
 };
+bool rusiavimas (mokinys a, mokinys b)
+{
+    return a.var < b.var;
+}
 
 int main()
 {
 	string failoPav = "kursiokai.txt";
 	vector<mokinys>lentele;
+	vector<mokinys>a;
 	mokinys temp;
 	int temp_a = 1, temp_b, temp_sum = 0;
 	double temp_vid1, temp_med1, temp_med2;
@@ -118,6 +124,7 @@ int main()
 	}
 	cout << "Jei norite, kad rodytu vidurki spauskite 1, jei mediana spauskite 2 ";
 	cin >> temp_b;
+	sort(lentele.begin(), lentele.end(), rusiavimas);
 	if (temp_b == 1)
 	{
 		cout << setw(15) << left << "Vardas " << setw(15) << left << "Pavarde " << setw(20) << right << "Galutinis (Vid.) " << endl;
@@ -126,7 +133,7 @@ int main()
 		cout << "-" << endl;
 		cout.fill(' ');
 		for (mokinys duomenys : lentele)
-			cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << duomenys.vid << endl;
+			cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << setprecision(3) << duomenys.vid << endl;
 	}
 	else if (temp_b == 2)
 	{
@@ -136,6 +143,6 @@ int main()
 		cout << "-" << endl;
 		cout.fill(' ');
 		for (mokinys duomenys : lentele)
-			cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << duomenys.med << endl;
+			cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << setprecision(3) << duomenys.med << endl;
 	}
 }

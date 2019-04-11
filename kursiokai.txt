@@ -1,4 +1,6 @@
 Vardas Pavarde ND1 ND2 ND3 ND4 ND5 EGZ
 Rytis Mecionis 10 9 8 7 6 5
 Lorenas Urnikis 10 9 8 7 6 5
-a v 10 9 8 7 6 5
+Agurkinis vandalas 10 9 8 7 6 9
+Vytenis Lukaitis 10 8 9 6 4 7
+Lama BPO 9 8 2 6 4 10
