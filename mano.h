@@ -15,10 +15,6 @@ struct mokinys
 	vector<int>nd;
 	double egz, vid, med;
 };
-bool rusiavimas (mokinys a, mokinys b)
-{
-    return a.var < b.var;
-}
 
 
 

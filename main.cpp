@@ -1,8 +1,12 @@
 #include "mano.h"
+#include "ivedimasIsFailo.h"
+bool rusiavimas (mokinys a, mokinys b)
+{
+    return a.var < b.var;
+}
 
 int main()
 {
-	string failoPav = "kursiokai.txt";
 	vector<mokinys>lentele;
 	vector<mokinys>a;
 	mokinys temp;
@@ -20,7 +24,7 @@ int main()
 			temp.nd.clear();
 			temp_sum = 0;
 			int yesno;
-			cout << "Jei norite ivesti pazymius patys spauskite 1, kitu atveju iveskite bet ka ";
+			cout << "Jei norite ivesti pazymius patys spauskite 1, kitu atveju iveskite bet koki kita skaiciu ";
 			cin >> yesno;
 			if (yesno == 1)
 			{
@@ -72,59 +76,35 @@ int main()
 	}
 	else if (patsArFailas == 2)
 	{
-		ifstream failas;
-		failas.open(failoPav);
-		string eilute;
-		getline(failas, eilute);
-		while (!failas.eof())
-		{
-			failas>>temp.var>>temp.pav;
-			temp.nd.clear();
-			for(int i=0, temp_paz; i<5; i++)
-            {
-                failas>>temp_paz;
-                temp.nd.push_back(temp_paz);
-            }
-            failas>>temp.egz;
-            temp_sum=0;
-			for (int i : temp.nd)
-				temp_sum += i;
-			temp_vid1 = temp_sum * 1.0 / (temp.nd.size());
-			temp.vid = temp_vid1 * 0.4 + temp.egz*0.6;
-			temp.nd.push_back(temp.egz);
-			sort(temp.nd.begin(), temp.nd.end());
-			if (temp.nd.size() % 2 == 0)
-			{
-				temp_med1 = temp.nd.size() / 2;
-				temp_med2 = temp.nd.size() / 2 + 1;
-				temp.med = (temp.nd[temp_med1] + temp.nd[temp_med2])*1.0 / 2;
-			}
-			lentele.push_back(temp); // i lentele idedam temp
-
-		}
-		failas.close();
+	   ivedimasIsFailo(lentele);
 	}
-	cout << "Jei norite, kad rodytu vidurki spauskite 1, jei mediana spauskite 2 ";
-	cin >> temp_b;
-	sort(lentele.begin(), lentele.end(), rusiavimas);
-	if (temp_b == 1)
-	{
-		cout << setw(15) << left << "Vardas " << setw(15) << left << "Pavarde " << setw(20) << right << "Galutinis (Vid.) " << endl;
-		cout.fill('-');
-		cout.width(50);
-		cout << "-" << endl;
-		cout.fill(' ');
-		for (mokinys duomenys : lentele)
-			cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << setprecision(3) << duomenys.vid << endl;
-	}
-	else if (temp_b == 2)
-	{
-		cout << setw(15) << left << "Vardas " << setw(15) << left << "Pavarde " << setw(20) << right << "Mediana" << endl;
-		cout.fill('-');
-		cout.width(50);
-		cout << "-" << endl;
-		cout.fill(' ');
-		for (mokinys duomenys : lentele)
-			cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << setprecision(3) << duomenys.med << endl;
-	}
+	cout<<lentele.size()<<endl;
+	if(lentele.size()!=0)
+        {
+           cout << "Jei norite, kad rodytu vidurki spauskite 1, jei mediana spauskite 2 ";
+        cin >> temp_b;
+        sort(lentele.begin(), lentele.end(), rusiavimas);
+        if (temp_b == 1)
+        {
+            cout << setw(15) << left << "Vardas " << setw(15) << left << "Pavarde " << setw(20) << right << "Galutinis (Vid.) " << endl;
+            cout.fill('-');
+            cout.width(50);
+            cout << "-" << endl;
+            cout.fill(' ');
+            for (mokinys duomenys : lentele)
+                cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << setprecision(3) << duomenys.vid << endl;
+        }
+        else if (temp_b == 2)
+        {
+            cout << setw(15) << left << "Vardas " << setw(15) << left << "Pavarde " << setw(20) << right << "Mediana" << endl;
+            cout.fill('-');
+            cout.width(50);
+            cout << "-" << endl;
+            cout.fill(' ');
+            for (mokinys duomenys : lentele)
+                cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << setprecision(3) << duomenys.med << endl;
+        }
+        }
+return 0;
 }
+
