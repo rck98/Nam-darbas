@@ -3,6 +3,7 @@
 #include "mano.h"
 using namespace std;
 void ivedimasIsFailo(vector <mokinys> &lentele);
+void PenkiFailai(vector<mokinys>&lentele);
 
 
 

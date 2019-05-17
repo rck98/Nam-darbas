@@ -9,13 +9,16 @@ int main()
 {
 	vector<mokinys>lentele;
 	vector<mokinys>a;
+	vector<mokinys>moksliukai;
+	vector<mokinys>nemoksliukai;
 	mokinys temp;
 	int temp_a = 1, temp_b, temp_sum = 0;
 	double temp_vid1, temp_med1, temp_med2;
 	int patsArFailas;
-	cout << "Jei norite ivesti duomenis patys, iveskite 1, jeigu nuskaityti is failo 2 ";
+	cout << "Jei norite ivesti duomenis patys, iveskite 1, jeigu nuskaityti is kursiokai.txt spauskite 2 jeigu patikrinti greiti spauskite 3 ";
 	cin >> patsArFailas;
-	if (patsArFailas == 1) {
+	if (patsArFailas == 1)
+            {
 		while (temp_a == 1)
 		{
 			int temp_paz = 1;
@@ -55,7 +58,8 @@ int main()
 				temp.egz = (rand() % 10) + 1;
 				temp.nd.push_back(temp.egz);
 				temp_vid1 = temp_sum * 1.0 / (temp.nd.size() - 1);
-			}
+
+            }
 			temp.vid = temp_vid1 * 0.4 + temp.egz*0.6;
 			sort(temp.nd.begin(), temp.nd.end());
 			if (temp.nd.size() % 2 == 0)
@@ -73,13 +77,16 @@ int main()
 			cout << "Jei norite testi spauskite 1 ";
 			cin >> temp_a;
 		}
-	}
+            }
 	else if (patsArFailas == 2)
 	{
 	   ivedimasIsFailo(lentele);
 	}
-	cout<<lentele.size()<<endl;
-	if(lentele.size()!=0)
+	else if (patsArFailas == 3)
+    {
+        PenkiFailai(lentele);
+            return 0;
+    }
         {
            cout << "Jei norite, kad rodytu vidurki spauskite 1, jei mediana spauskite 2 ";
         cin >> temp_b;
