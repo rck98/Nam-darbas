@@ -1,3 +1,3 @@
 # Namų darbas
 ---
-## 5 versijoje ikelti pavieniai failais su vektooriais ir du .rar failai kuriuose yra projektai su lis ir deque
+## 5 versijoje ikelti pavieniai failai su vektoriais ir du .rar failai kuriuose yra projektai su list ir deque
