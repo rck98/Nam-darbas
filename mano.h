@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <chrono>
+#include <list>
 using namespace std;
 
 struct mokinys
