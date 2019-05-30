@@ -53,7 +53,6 @@ void PenkiFailai(vector<mokinys>&lentele)
     int temp_sum = 0;
 	double temp_vid1, temp_med1, temp_med2;
 	mokinys temp;
-          chrono::steady_clock::time_point begin = chrono::steady_clock::now();
     string numeris;
     string txt={".txt"};
     string a[15]="Vardas";
@@ -71,6 +70,7 @@ void PenkiFailai(vector<mokinys>&lentele)
     }
                 cout<<"iveskite failo numeri nuo 1 iki 5 kuri noretumete surusiuoti (1 - 10 zmoniu .... 5 - 100000 zmoniu) ";
                 cin>>numeris;
+                chrono::steady_clock::time_point begin = chrono::steady_clock::now();
                 numeris+=txt;
                 ifstream in (numeris);
                 string eilute;

@@ -15,7 +15,7 @@ int main()
 	int temp_a = 1, temp_b, temp_sum = 0;
 	double temp_vid1, temp_med1, temp_med2;
 	int patsArFailas;
-	cout << "Jei norite ivesti duomenis patys, iveskite 1, jeigu nuskaityti is kursiokai.txt spauskite 2 jeigu patikrinti greiti spauskite 3 ";
+	cout << "Jei norite ivesti duomenis patys, iveskite 1, jeigu nuskaityti is kursiokai.txt spauskite 2 jeigu nuskaityti random failus 3 ";
 	cin >> patsArFailas;
 	if (patsArFailas == 1)
             {
@@ -90,7 +90,10 @@ int main()
         {
            cout << "Jei norite, kad rodytu vidurki spauskite 1, jei mediana spauskite 2 ";
         cin >> temp_b;
+        chrono::steady_clock::time_point begin = chrono::steady_clock::now();
         sort(lentele.begin(), lentele.end(), rusiavimas);
+        chrono::steady_clock::time_point end=chrono::steady_clock::now();
+            cout << "Jusu programa dirbo " << chrono::duration_cast<chrono::seconds>(end - begin).count() <<" sekundziu"<<endl;
         if (temp_b == 1)
         {
             cout << setw(15) << left << "Vardas " << setw(15) << left << "Pavarde " << setw(20) << right << "Galutinis (Vid.) " << endl;
@@ -111,6 +114,7 @@ int main()
             for (mokinys duomenys : lentele)
                 cout << setw(15) << left << duomenys.var << setw(15) << left << duomenys.pav << setw(20) << right << setprecision(3) << duomenys.med << endl;
         }
+
         }
 return 0;
 }
